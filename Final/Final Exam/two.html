@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <a href="one.html">Problem 1</a> |
+        <a href="two.html">Problem 2</a> |
+        <a href="three.html">Problem 3</a> |
+        <a href="four.html">Problem 4</a> |
+        <a href="five.html">Problem 5</a> |
+        <a href="six.html">Problem 6</a> |
+        <a href="seven.html">Problem 7</a> |
+        <a href="eight.html">Problem 8</a> |
+        <a href="nine.html">Problem 9</a>
+    </nav> 
+    <br><br>
+    <h1>Problem 2</h1><br>
+    <div>
+        <table border="1" id="data-table">
+            <tr>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Mobile</td>
+                <td>Email</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        const url = 'https://codeandcareer.com/assignments/api/api.php';
+
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                const table = document.getElementById("data-table");
+
+                data.forEach(item => {
+                    const row = document.createElement("tr");
+
+                    const idCell = document.createElement("td");
+                    idCell.textContent = item.id;
+
+                    const nameCell = document.createElement("td");
+                    nameCell.textContent = item.name;
+
+                    const mobileCell = document.createElement("td");
+                    mobileCell.textContent = item.mobile;
+
+                    const emailCell = document.createElement("td");
+                    emailCell.textContent = item.email;
+
+                    row.appendChild(idCell);
+                    row.appendChild(nameCell);
+                    row.appendChild(mobileCell);
+                    row.appendChild(emailCell);
+
+                    table.appendChild(row);
+                });
+            })
+            .catch(error => {
+                console.error('Fetch error: ', error);
+            });
+    </script>
+</body>
+</html>

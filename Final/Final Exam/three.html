@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Validation</title>
+    <style>
+        /* Style for the text input */
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        /* Red border when input is invalid */
+        input.invalid {
+            border: 2px solid red;
+        }
+    </style>
+</head>
+<body>
+    <h2>Age Validation</h2>
+    <label for="ageInput">Enter your age:</label>
+    <input type="text" id="ageInput">
+    <button onclick="validateAge()">Submit</button>
+
+    <script>
+        function validateAge() {
+            var age = document.getElementById("ageInput").value;
+            var inputElement = document.getElementById("ageInput");
+
+            // Check if input is a number and less than 100
+            if (!isNaN(age) && age < 100 && age > 0) {
+                alert("You are " + age + " years old");
+                inputElement.classList.remove("invalid"); // Remove red border
+            } 
+            // Check if input is greater than or equal to 100
+            else if (age >= 100) {
+                alert("Invalid Input");
+                inputElement.classList.add("invalid"); // Add red border
+            } 
+            // If not a valid number or empty
+            else {
+                alert("Please enter a valid number");
+                inputElement.classList.add("invalid"); // Add red border
+            }
+        }
+    </script>
+</body>
+</html>

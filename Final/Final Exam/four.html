@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+  <style>
+    .bold {
+      font-weight: bold;
+    }
+    .italic {
+      font-style: italic;
+    }
+    .underline {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="one.html">Problem 1</a> |
+    <a href="two.html">Problem 2</a> |
+    <a href="three.html">Problem 3</a> |
+    <a href="four.html">Problem 4</a> |
+    <a href="five.html">Problem 5</a> |
+    <a href="six.html">Problem 6</a> |
+    <a href="seven.html">Problem 7</a> |
+    <a href="eight.html">Problem 8</a> |
+    <a href="nine.html">Problem 9</a>
+  </nav> 
+  <br><br>
+  <h1>Problem 4</h1><br>
+  <div>
+    <p id="text">This is a paragraph</p>
+    <button onclick="toggleStyle('bold')">Bold</button>
+    <button onclick="toggleStyle('italic')">Italic</button>
+    <button onclick="toggleStyle('underline')">Underline</button>
+  </div>
+
+  <script>
+    function toggleStyle(style) {
+      const paragraph = document.getElementById("text");
+      paragraph.classList.toggle(style);
+    }
+  </script>
+</body>
+</html>
