@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table with Delete Action</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        button {
+            padding: 8px 16px;
+            background-color: #f44336;
+            color: rgb(12, 1, 1);
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        button:hover {
+            background-color: #78cb14;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Users Table</h2>
+
+    <table id="usersTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script>
+        const jsonData = `[
+            {"id": 1, "name": "Alice Johnson", "email": "alice@example.com"},
+            {"id": 2, "name": "Bob Smith", "email": "bob@example.com"},
+            {"id": 3, "name": "Charlie Brown", "email": "charlie@example.com"},
+            {"id": 4, "name": "David Wilson", "email": "david@example.com"},
+            {"id": 5, "name": "Emma Davis", "email": "emma@example.com"},
+            {"id": 6, "name": "Frank Thomas", "email": "frank@example.com"},
+            {"id": 7, "name": "Grace Miller", "email": "grace@example.com"},
+            {"id": 8, "name": "Henry White", "email": "henry@example.com"},
+            {"id": 9, "name": "Isabella Moore", "email": "isabella@example.com"},
+            {"id": 10, "name": "Jack Taylor", "email": "jack@example.com"}
+        ]`;
+
+        const users = JSON.parse(jsonData);
+
+        function populateTable() {
+            const tableBody = document.querySelector("#usersTable tbody");
+            tableBody.innerHTML = '';
+
+            users.forEach(user => {
+                const row = document.createElement("tr");
+               
+                const cellId = document.createElement("td");
+                cellId.textContent = user.id;
+                row.appendChild(cellId);
+               
+                const cellName = document.createElement("td");
+                cellName.textContent = user.name;
+                row.appendChild(cellName);
+               
+                const cellEmail = document.createElement("td");
+                cellEmail.textContent = user.email;
+                row.appendChild(cellEmail);
+               
+                const cellAction = document.createElement("td");
+                const deleteButton = document.createElement("button");
+                deleteButton.textContent = "DELETE";
+                deleteButton.onclick = () => deleteRow(user.id);
+                cellAction.appendChild(deleteButton);
+                row.appendChild(cellAction);
+               
+                tableBody.appendChild(row);
+            });
+        }
+
+        function deleteRow(userId) {
+            const index = users.findIndex(user => user.id === userId);
+            if (index !== -1) {
+                users.splice(index, 1);
+                populateTable();
+            }
+        }
+
+       
+        populateTable();
+    </script>
+
+</body>
+</html>
